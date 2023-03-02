@@ -15,7 +15,7 @@ class Thing:
             self.subslot = record.payload['subslot']
             self.slot = record.payload['slot']
             self.features = np.array(record.vector['image_emb'], dtype=np.float32)
-            self.img_path = self.record_to_url(record)
+            self.img_path = record.payload['url'] #self.record_to_url(record)
 
 
     def category_to_subslot(self, subcat):

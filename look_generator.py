@@ -13,7 +13,10 @@ import random
 class LookGenerator:
     def __init__(self):
         self.la_interpreter = self._la_model_init_()
-        self.client = QdrantClient(host="localhost", port=6333)
+        self.client = QdrantClient(
+                host=os.environ.get('QDRANT_SERVER'),
+                api_key=os.environ.get('QDRANT_API_KEY'),
+            )
         self.fe = FeatureExtractor()
 
     def _la_model_init_(self):
@@ -32,7 +35,7 @@ class LookGenerator:
 
     def _get_things_for_slot_(self, slot, slot_offset):
         result = self.client.scroll(
-            collection_name="products_small",
+            collection_name="products",
             scroll_filter=Filter(
                 must=[
                     FieldCondition(

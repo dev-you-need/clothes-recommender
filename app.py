@@ -42,7 +42,7 @@ def streamlit_view():
             main_img = resize_image(main_img, 256)
             main_img_arr = lg.fe._load_img_(img_file_buffer)
             main_img_subslot, main_img_features = lg.fe.feed_img(main_img_arr)
-            main_thing = Thing(subslot=main_img_subslot)
+            main_thing = Thing(subslot=main_img_subslot, features=main_img_features)
 
     if st.button("(Re)Generate"):
         if 'offsets' not in st.session_state:
@@ -52,7 +52,7 @@ def streamlit_view():
         columns = [col1, col2, col3, col4, col5, col6, col7]
 
         for thing, col in zip(look.things, columns):
-            if main_img and thing.slot == look.main_thing_slot:
+            if main_img and thing and thing.slot == look.main_thing_slot:
                 with col:
                     st.text(slot_names[look.main_thing_slot])
                     st.image(main_img)
@@ -60,5 +60,6 @@ def streamlit_view():
                 with col:
                     st.text(slot_names[thing.slot])
                     st.image(thing.img_path)
+        st.text('Look quality: {:2.2f}%'.format(look.pred_quality*100))
 
 streamlit_view()
