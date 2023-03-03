@@ -1,4 +1,4 @@
-import tensorflow as tf
+import tflite_runtime.interpreter as tflite
 import numpy as np
 
 class FeatureExtractor:
@@ -7,7 +7,7 @@ class FeatureExtractor:
 
     def _fe_model_init_(self):
         model_path = 'model.tflite'
-        interpreter = tf.lite.Interpreter(model_path=model_path)
+        interpreter = tflite.Interpreter(model_path=model_path)
         # input_details = interpreter.get_input_details()
         # output_details = interpreter.get_output_details()
         interpreter.allocate_tensors()

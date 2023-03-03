@@ -1,4 +1,4 @@
-import tensorflow as tf
+import tflite_runtime.interpreter as tflite
 import numpy as np
 import os
 from qdrant_client import QdrantClient
@@ -21,7 +21,7 @@ class LookGenerator:
 
     def _la_model_init_(self):
         model_path = 'la.tflite'
-        interpreter = tf.lite.Interpreter(model_path=model_path)
+        interpreter = tflite.Interpreter(model_path=model_path)
         #input_details = interpreter.get_input_details()
         #output_details = interpreter.get_output_details()
         interpreter.allocate_tensors()
