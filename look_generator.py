@@ -102,7 +102,7 @@ class LookGenerator:
             #if pred>0.9:
             #    break
 
-        print("look quality:", look.pred_quality)
+        #print("look quality:", look.pred_quality)
         return look, offset
 
 
