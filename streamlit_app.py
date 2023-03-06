@@ -8,12 +8,6 @@ from look_generator import LookGenerator
 from look import Look
 from thing import Thing
 
-def feature_extract(img):
-    features = [0]*128
-    thing_index = randint(0, 6)
-
-    return thing_index, features
-
 
 def generate(lg, main_img_slot, main_img_features, offset):
     return lg.generate(main_img_slot, main_img_features, offset)
@@ -21,7 +15,9 @@ def generate(lg, main_img_slot, main_img_features, offset):
 
 def streamlit_view():
     st.title("Recommendation of suitable clothes", anchor=None)
-    st.text("description")
+    st.markdown("This is an online demo of a clothing recommendation system, the history of which is described here: [link to Medium](https://medium.com/@ml-you-need/what-to-wear-a-story-of-one-project-5f20989e5234)")
+    st.markdown('You can upload your own clothing image and/or just click the "Generate" button')
+    st.markdown('Used dataset: [link to Github](https://github.com/deerslab/clothes-dataset)')
     main_img = None
     main_img_features = None
     main_img_slot = None
