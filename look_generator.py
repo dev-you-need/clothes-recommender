@@ -8,8 +8,6 @@ from thing import Thing
 from look import Look
 from fe import FeatureExtractor
 
-import random
-
 class LookGenerator:
     def __init__(self):
         self.la_interpreter = self._la_model_init_()
@@ -33,7 +31,10 @@ class LookGenerator:
         output_data = self.la_interpreter.get_tensor(8)
         return output_data[0][1]
 
-    def _get_things_for_slot_(self, slot, slot_offset):
+    def _get_things_for_slot_(self, slot, slot_offset, number_things=None):
+        if number_things is None:
+            number_things = np.random.randint(12,24)
+
         result = self.client.scroll(
             collection_name="products",
             scroll_filter=Filter(
@@ -44,7 +45,7 @@ class LookGenerator:
                     ),
                 ]
             ),
-            limit=20,
+            limit=number_things,
             with_payload=True,
             with_vectors=True,
             offset=slot_offset

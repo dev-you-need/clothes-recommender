@@ -3,7 +3,6 @@ from PIL import Image
 import numpy as np
 from utils import resize_image
 from random import randint
-from recommender import Recommender
 from look_generator import LookGenerator
 from look import Look
 from thing import Thing
