@@ -1,6 +1,8 @@
 import tflite_runtime.interpreter as tflite
 import numpy as np
 
+from utils import load_img, img_to_array
+
 class FeatureExtractor:
     def __init__(self):
         self.fe_interpreter = self._fe_model_init_()
@@ -15,8 +17,9 @@ class FeatureExtractor:
 
     def _load_img_(self, path):
         try:
-            image = tf.keras.utils.load_img(path, target_size=(224, 224))
-            input_arr = tf.keras.utils.img_to_array(image)
+            image = load_img(path, target_size=(224, 224))
+            #image = tf.keras.utils.load_img(path, target_size=(224, 224))
+            input_arr = img_to_array(image)
             input_arr = np.array([input_arr])
             input_arr = ((input_arr - 127.5) / 127.5)
         except FileNotFoundError:
