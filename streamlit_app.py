@@ -16,7 +16,7 @@ def streamlit_view():
     st.title("Recommendation of suitable clothes", anchor=None)
     st.markdown("This is an online demo of a clothing recommendation system, the history of which is described here: [link to Medium](https://medium.com/@ml-you-need/what-to-wear-a-story-of-one-project-5f20989e5234)")
     st.markdown('You can upload your own clothing image and/or just click the "Generate" button')
-    st.markdown('Used dataset: [link to Github](https://github.com/deerslab/clothes-dataset)')
+    st.markdown('Used dataset: [link to Github](https://github.com/dev-you-need/clothes-dataset)')
     main_img = None
     main_img_features = None
     main_img_slot = None
